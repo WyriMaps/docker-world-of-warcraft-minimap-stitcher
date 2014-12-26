@@ -14,14 +14,13 @@ func main() {
 	app.Usage = "Sitcher World of Warcraft minimaps together"
 	app.Action = func(c *cli.Context) {
 		runtime.GOMAXPROCS(runtime.GOMAXPROCS(runtime.NumCPU())) // Auto detects the number of cores to use
-		print("Found ")
-		print(runtime.NumCPU())
-		println(" CPU cores we'll be using")
+		s := []string{"Found", runtime.NumCPU(), "CPU cores we'll be using"};
+		println(strings.Join(s, " "));
 		var report = func(message map[string]string) {
-			println(message["minimap"] + ": " + message["type"])
+			println(message["minimap"] + ": " + message["type"]);
 		}
-		stitcher.Stitch(report, "/opt/map_tiles/", "/opt/maps/")
-		println("Done!")
+		stitcher.Stitch(report, "/opt/map_tiles/", "/opt/maps/");
+		println("Done!");
 	}
 
 	app.Run(os.Args)
