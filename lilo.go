@@ -28,10 +28,7 @@ func main() {
 		runtime.GOMAXPROCS(runtime.GOMAXPROCS(runtime.NumCPU())) // Auto detects the number of cores to use
 		s := []string{"Found", strconv.Itoa(runtime.NumCPU()), "CPU cores we'll be using"};
 		println(strings.Join(s, " "));
-		var report = func(message map[string]string) {
-			println(message["minimap"] + ": " + message["type"]);
-		}
-		stitcher.Stitch(report, "/opt/map_tiles/", "/opt/maps/");
+		stitcher.Stitch("/opt/map_tiles/", "/opt/maps/");
 		println("Done!");
 	}
 
