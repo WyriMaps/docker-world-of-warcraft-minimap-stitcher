@@ -3,8 +3,6 @@ package main
 import (
 	"os"
 	"runtime"
-	"strconv"
-	"strings"
 
 	stitcher "github.com/WyriMaps/MinimapStitcher"
 	"github.com/codegangsta/cli"
@@ -25,11 +23,8 @@ func main() {
 			return
 		}
 
-		runtime.GOMAXPROCS(runtime.GOMAXPROCS(runtime.NumCPU())) // Auto detects the number of cores to use
-		s := []string{"Found", strconv.Itoa(runtime.NumCPU()), "CPU cores we'll be using"};
-		println(strings.Join(s, " "));
+		runtime.GOMAXPROCS(runtime.NumCPU()) // Auto detects the number of cores to use
 		stitcher.Stitch("/opt/map_tiles/", "/opt/maps/");
-		println("Done!");
 	}
 
 	app.Run(os.Args)
